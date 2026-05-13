@@ -1,0 +1,13 @@
+name: .Net Setup
+description: Setup .Net SDK and resotre solution
+
+runs:
+ using: composite
+ steps:
+  - name: Setup .NET
+    uses: actions/setup-dotnet@v5
+    with: 
+     dotnet-version: "10.0.x"
+
+  - name: Restore dependencies
+    run: dotnet restore CSharpTesting.slnx
