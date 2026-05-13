@@ -1,0 +1,9 @@
+name: .Net CI
+
+on: [push]
+
+jobs:
+ helloworld:
+  runs-on: ubuntu-latest
+  steps:
+   - run: echo "Hello world"
