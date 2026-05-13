@@ -4,6 +4,8 @@ description: Setup .Net SDK and resotre solution
 runs:
  using: composite
  steps:
+  - name: Checkout
+    uses: actions/checkout@v6
   - name: Setup .NET
     uses: actions/setup-dotnet@v5
     with: 
