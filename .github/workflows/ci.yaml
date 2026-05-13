@@ -4,57 +4,57 @@ on: [push]
 
 jobs:
  build:
-   runs-on: ubuntu-latest
+  runs-on: ubuntu-latest
 
-   steps:
-     - name: Checkout
-       uses: actions/checkout@v6
+  steps:
+   - name: Checkout
+     uses: actions/checkout@v6
 
-     - name: Setup
-       uses: ./.github/actions
+   - name: Setup
+     uses: ./.github/actions
 
 
-     - name: Restore dependencies
-       run: dotnet restore CSharpTesting.slnx
+   - name: Restore dependencies
+     run: dotnet restore CSharpTesting.slnx
 
-     - name: Build Solution
-       run: dotnet build CSharpTesting.slnx --configuration Release --no-restore
+   - name: Build Solution
+     run: dotnet build CSharpTesting.slnx --configuration Release --no-restore
 
  test:
   runs-on: ubuntu-latest
   needs: build
   steps:
-     - name: Checkout
-       uses: actions/checkout@v6
+   - name: Checkout
+     uses: actions/checkout@v6
 
-     - name: Setup
-       uses: ./.github/actions
+   - name: Setup
+     uses: ./.github/actions
 
-     - name: Restore dependencies
-       run: dotnet restore CSharpTesting.slnx
+   - name: Restore dependencies
+     run: dotnet restore CSharpTesting.slnx
 
-     - name: Test Exploration
-       run: dotnet test Exploration.Tests/Exploration.Tests.csproj --configuration Release --no-restore --verbosity normal
+   - name: Test Exploration
+     run: dotnet test Exploration.Tests/Exploration.Tests.csproj --configuration Release --no-restore --verbosity normal
       
-     - name: Test Bowling
-       run: dotnet test Bowling.Tests/Bowling.Tests.csproj --configuration Release --no-restore --verbosity normal
+   - name: Test Bowling
+     run: dotnet test Bowling.Tests/Bowling.Tests.csproj --configuration Release --no-restore --verbosity normal
 
-     - name: Test ConnectFour
-       run: dotnet test ConnectFour.Tests/ConnectFour.Tests.csproj --configuration Release --no-restore --verbosity normal
+   - name: Test ConnectFour
+     run: dotnet test ConnectFour.Tests/ConnectFour.Tests.csproj --configuration Release --no-restore --verbosity normal
 
  format:
   runs-on: ubuntu-latest
 
   steps:
-     - name: Checkout
-       uses: actions/checkout@v6
+   - name: Checkout
+     uses: actions/checkout@v6
 
-     - name: Setup
-       uses: ./.github/actions
+   - name: Setup
+     uses: ./.github/actions
 
-     - name: Restore dependencies
-       run: dotnet restore CSharpTesting.slnx
+   - name: Restore dependencies
+     run: dotnet restore CSharpTesting.slnx
 
-     - name: format
-       run: dotnet format CSharpTesting.slnx --verify-no-changes --no-restore
-       continue-on-error: true
+   - name: format
+     run: dotnet format CSharpTesting.slnx --verify-no-changes --no-restore
+     continue-on-error: true
